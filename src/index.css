@@ -12,6 +12,15 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+* {
+  text-align: right;
+}
+
+body {
+  direction: rtl;
+  text-align: right;
+}
+
 
 a {
   font-weight: 500;

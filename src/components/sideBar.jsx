@@ -1,39 +1,25 @@
-import { NavLink, useNavigate } from "react-router-dom";
-import "../styles/sidebar.css";
+import { NavLink } from "react-router-dom";
+import "../styles/sideBar.css";
 
-const Sidebar = () => {
-  const navigate = useNavigate();
-
-  const logout = () => {
-    localStorage.clear();
-    navigate("/login");
-  };
-
+export default function Sidebar() {
   return (
-    <div className="sidebar">
-      <div className="sidebar-header">
-        <h2>Agri Panel</h2>
-      </div>
+    <aside className="sidebar">
+      <h2 className="logo">Dashboard</h2>
 
-      <div className="sidebar-menu">
-        <NavLink to="/user" end className="menu-link">
-          🏠 Dashboard
-        </NavLink>
-
-        <NavLink to="/user/profile" className="menu-link">
-          👤 Profile
-        </NavLink>
-
-        <NavLink to="/user/settings" className="menu-link">
-          ⚙️ Settings
-        </NavLink>
-      </div>
-
-      <button className="logout-btn" onClick={logout}>
-        🚪 Logout
-      </button>
-    </div>
+      <ul className="menu">
+        <li>
+          <NavLink to="/overview">Overview</NavLink>
+        </li>
+        <li>
+          <NavLink to="/users">Users</NavLink>
+        </li>
+        <li>
+          <NavLink to="/reports">Reports</NavLink>
+        </li>
+        <li>
+          <NavLink to="/settings">Settings</NavLink>
+        </li>
+      </ul>
+    </aside>
   );
-};
-
-export default Sidebar;
+}
