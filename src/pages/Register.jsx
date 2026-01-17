@@ -1,34 +1,61 @@
-import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useState } from "react";
+import "../styles/auth.css";
 
 const Register = () => {
+  const navigate = useNavigate();
+
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const navigate = useNavigate();
+  const [error, setError] = useState("");
 
-  const handleRegister = (e) => {
-    e.preventDefault();
-
+  const handleRegister = () => {
     if (!name || !email || !password) {
-      alert("All fields required");
+      setError("All fields are required");
       return;
     }
 
-    alert("Registered Successfully");
-    navigate("/");
+    setError("");
+    alert("Registered successfully!");
+    navigate("/login");
   };
 
   return (
-    <form onSubmit={handleRegister}>
-      <h2>Register</h2>
+    <div className="auth-container">
+      <div className="auth-box">
+        <h2>Register</h2>
 
-      <input placeholder="Name" onChange={(e) => setName(e.target.value)} />
-      <input placeholder="Email" onChange={(e) => setEmail(e.target.value)} />
-      <input placeholder="Password" type="password" onChange={(e) => setPassword(e.target.value)} />
+        {error && <p className="error">{error}</p>}
 
-      <button>Register</button>
-    </form>
+        <input
+          type="text"
+          placeholder="Full Name"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+        />
+
+        <input
+          type="email"
+          placeholder="Email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+        />
+
+        <input
+          type="password"
+          placeholder="Password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+        />
+
+        <button onClick={handleRegister}>Register</button>
+
+        <div className="auth-link" onClick={() => navigate("/login")}>
+          Already have an account? Login
+        </div>
+      </div>
+    </div>
   );
 };
 

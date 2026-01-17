@@ -1,46 +1,63 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import "../styles/auth.css";
 
 const Login = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
   const navigate = useNavigate();
 
-  const handleLogin = (e) => {
-    e.preventDefault();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
 
+  const handleLogin = () => {
+    // 1️⃣ Validation
     if (!email || !password) {
-      alert("All fields required");
+      setError("All fields are required");
       return;
     }
 
-    // Dummy login
-    localStorage.setItem("token", "dummy-token");
-    localStorage.setItem("role", "USER");
-
-    navigate("/user");
+    // 2️⃣ Dummy authentication logic
+    if (email === "admin@gmail.com" && password === "admin123") {
+      localStorage.setItem("token", "admin-token");
+      localStorage.setItem("role", "ADMIN");
+      navigate("/admin");
+    } else if (email === "user@gmail.com" && password === "user123") {
+      localStorage.setItem("token", "user-token");
+      localStorage.setItem("role", "USER");
+      navigate("/user");
+    } else {
+      setError("Invalid email or password");
+    }
   };
 
   return (
-    <form onSubmit={handleLogin}>
-      <h2>Login</h2>
+    <div className="auth-container">
+      <div className="auth-box">
+        <h2>Login</h2>
 
-      <input
-        type="email"
-        placeholder="Email"
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
-      />
+        {error && <p className="error">{error}</p>}
 
-      <input
-        type="password"
-        placeholder="Password"
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-      />
+        <input
+          type="email"
+          placeholder="Email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+        />
 
-      <button type="submit">Login</button>
-    </form>
+        <input
+          type="password"
+          placeholder="Password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+        />
+
+        <button onClick={handleLogin}>Login</button>
+
+        <div className="auth-link">
+          Don’t have an account? Register
+        </div>
+      </div>
+    </div>
   );
 };
 

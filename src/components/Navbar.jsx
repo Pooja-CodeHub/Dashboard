@@ -1,14 +1,12 @@
-import { useNavigate } from "react-router-dom";
+//import "../styles/navbar.css";
 
 const Navbar = () => {
-  const navigate = useNavigate();
-
-  const logout = () => {
-    localStorage.clear();
-    navigate("/");
-  };
-
-  return <button onClick={logout}>Logout</button>;
+  return (
+    <div className="navbar">
+      <h3>User Dashboard</h3>
+      <p>Welcome 👋</p>
+    </div>
+  );
 };
 
 export default Navbar;
