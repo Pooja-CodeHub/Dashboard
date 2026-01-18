@@ -1,0 +1,141 @@
+/* body {
+  margin: 0;
+  padding: 0;
+} */
+
+/* Navbar */
+/* .navbar {
+  height: 60px;
+  width: 100%;
+  background: #1f2937;
+  color: white;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+} */
+
+/* Sidebar */
+/* .sidebar {
+  width: 220px;
+  height: calc(100vh - 60px);
+  background: #111827;
+  color: white;
+  position: fixed;
+  top: 60px;
+  left: 0;
+} */
+
+/* Main content */
+/* .dashboard-content {
+  margin-left: 220px;
+  margin-top: 60px;
+  padding: 30px;
+  min-height: calc(100vh - 60px);
+  background: #f4f6f9;
+} */
+/* Root Layout */
+.dashboard {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* TOP NAVBAR */
+.top-navbar {
+  height: 60px;
+  background: #1e293b;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 25px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+}
+
+.app-logo {
+  margin: 0;
+  color: #4facfe;
+}
+
+/* Profile Icon */
+.profile-icon {
+  width: 40px;
+  height: 40px;
+  background: #4facfe;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  font-size: 20px;
+}
+
+.profile-icon:hover {
+  background: #00c6ff;
+}
+
+/* BODY */
+.dashboard-body {
+  display: flex;
+  flex: 1;
+  margin-top: 60px; /* Push below navbar */
+}
+
+/* SIDEBAR */
+.sidebar {
+  width: 220px;
+  background: #0f172a;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  top: 60px; /* Start below navbar */
+  bottom: 0;
+  left: 0;
+}
+
+.sidebar a {
+  color: #cbd5e1;
+  text-decoration: none;
+  padding: 10px;
+  border-radius: 6px;
+  margin-bottom: 8px;
+}
+
+.sidebar a.active,
+.sidebar a:hover {
+  background: #1e293b;
+  color: white;
+}
+
+/* CONTENT */
+.content {
+  margin-left: 220px; /* Push right of sidebar */
+  padding: 20px;
+  flex: 1;
+  background: #f4f6fb;
+  min-height: calc(100vh - 60px);
+}
+.navbar-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+}
+
+.navbar-logo {
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+}
+
+.navbar-title {
+  font-size: 20px;
+  font-weight: bold;
+  color: white;
+}

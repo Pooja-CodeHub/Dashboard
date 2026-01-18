@@ -10,7 +10,7 @@ const UserDashboard = () => {
       <div className="user-content">
 
         <div className="profile-card">
-          <h3>Welcome User 👋</h3>
+          <h3>Welcome User</h3>
           <p>Email: user@gmail.com</p>
           <p>Role: USER</p>
         </div>

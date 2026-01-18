@@ -1,0 +1,43 @@
+.notifications-container {
+  padding: 25px;
+  background: #f4f6fb;
+  min-height: 100vh;
+}
+
+.notifications-container h2 {
+  margin-bottom: 20px;
+}
+
+/* Notification Card */
+.notification-card {
+  background: white;
+  padding: 15px 20px;
+  border-radius: 10px;
+  margin-bottom: 15px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+  border-left: 6px solid #4facfe;
+}
+
+.notification-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 5px;
+}
+
+.notification-header h4 {
+  margin: 0;
+}
+
+.notification-header span {
+  font-size: 12px;
+  color: gray;
+}
+
+/* Type based color */
+.notification-card.product {
+  border-left-color: #4caf50;
+}
+
+.notification-card.user {
+  border-left-color: #ff9800;
+}

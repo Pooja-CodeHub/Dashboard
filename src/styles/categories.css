@@ -1,0 +1,78 @@
+.categories-container {
+  padding: 25px;
+  background: #f4f6fb;
+  min-height: 100vh;
+}
+
+.categories-container h2 {
+  margin-bottom: 15px;
+}
+
+/* Add category form */
+.category-form {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.category-form input {
+  padding: 10px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  width: 250px;
+}
+
+.category-form button {
+  padding: 10px 15px;
+  background: #4facfe;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+/* Section */
+.section {
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  margin-bottom: 25px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+}
+
+.section h3 {
+  margin-bottom: 10px;
+}
+
+/* Tables */
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th,
+td {
+  padding: 12px;
+  text-align: center;
+  border-bottom: 1px solid #eee;
+}
+
+th {
+  background: #4facfe;
+  color: white;
+}
+
+/* Buttons */
+button {
+  padding: 6px 12px;
+  border: none;
+  border-radius: 5px;
+  background: #4facfe;
+  color: white;
+  cursor: pointer;
+}
+
+select {
+  padding: 6px;
+  border-radius: 5px;
+}
