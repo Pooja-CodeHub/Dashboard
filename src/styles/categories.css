@@ -76,3 +76,12 @@ select {
   padding: 6px;
   border-radius: 5px;
 }
+.delete-btn {
+  background: #e74c3c;
+  color: white;
+  margin-left: 8px;
+}
+
+.delete-btn:hover {
+  background: #c0392b;
+}

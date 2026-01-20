@@ -139,3 +139,40 @@
   font-weight: bold;
   color: white;
 }
+.nav-right {
+  position: relative;
+}
+
+.profile-icon {
+  font-size: 24px;
+  cursor: pointer;
+}
+
+/* Dropdown */
+.profile-dropdown {
+  position: absolute;
+  right: 0;
+  top: 45px;
+  background: white;
+  color: black;
+  width: 180px;
+  border-radius: 8px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+  overflow: hidden;
+  z-index: 2000;
+}
+
+.profile-dropdown div {
+  padding: 12px 15px;
+  cursor: pointer;
+  border-bottom: 1px solid #eee;
+}
+
+.profile-dropdown div:hover {
+  background: #f2f2f2;
+}
+
+.profile-dropdown .logout {
+  color: red;
+  font-weight: bold;
+}

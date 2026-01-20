@@ -41,6 +41,25 @@ const Categories = () => {
     );
     setEditingId(null);
   };
+  // Delete category
+const deleteCategory = (id, name) => {
+  const confirmDelete = window.confirm(
+    `Are you sure you want to delete "${name}" category?`
+  );
+
+  if (!confirmDelete) return;
+
+  // Remove category
+  setCategories(categories.filter((c) => c.id !== id));
+
+  // Update products assigned to this category
+  setProducts(
+    products.map((p) =>
+      p.category === name ? { ...p, category: "Unassigned" } : p
+    )
+  );
+};
+
 
   // Assign product to category
   const assignCategory = (productId, categoryName) => {
@@ -92,19 +111,29 @@ const Categories = () => {
                   )}
                 </td>
                 <td>
-                  {editingId === c.id ? (
-                    <button onClick={() => updateCategory(c.id)}>Save</button>
-                  ) : (
-                    <button
-                      onClick={() => {
-                        setEditingId(c.id);
-                        setEditingName(c.name);
-                      }}
-                    >
-                      Edit
-                    </button>
-                  )}
-                </td>
+  {editingId === c.id ? (
+    <button onClick={() => updateCategory(c.id)}>Save</button>
+  ) : (
+    <>
+      <button
+        onClick={() => {
+          setEditingId(c.id);
+          setEditingName(c.name);
+        }}
+      >
+        Edit
+      </button>
+
+      <button
+        className="delete-btn"
+        onClick={() => deleteCategory(c.id, c.name)}
+      >
+        Delete
+      </button>
+    </>
+  )}
+</td>
+
               </tr>
             ))}
           </tbody>

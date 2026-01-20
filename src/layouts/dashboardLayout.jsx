@@ -1,27 +1,28 @@
-// import { Outlet } from "react-router-dom";
-// import Sidebar from "../components/sideBar";
-// import Navbar from "../components/Navbar";
-// import "../styles/dashboardLayout.css";
 
-// const DashboardLayout = () => {
-//   return (
-//     <>
-//       <Navbar />
-//       <Sidebar />
-
-//       <div className="dashboard-content">
-//         <Outlet />
-//       </div>
-//     </>
-//   );
-// };
-
-// export default DashboardLayout;
 import { Outlet, NavLink, useNavigate } from "react-router-dom";
+import { useState, useRef, useEffect } from "react";
 import "../styles/dashboardLayout.css";
 
 const DashboardLayout = () => {
   const navigate = useNavigate();
+  const [open, setOpen] = useState(false);
+  const dropdownRef = useRef();
+
+  // Close dropdown when clicked outside
+  useEffect(() => {
+    const handler = (e) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(e.target)) {
+        setOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", handler);
+    return () => document.removeEventListener("mousedown", handler);
+  }, []);
+
+  const logout = () => {
+    localStorage.clear();
+    navigate("/login");
+  };
 
   return (
     <div className="dashboard">
@@ -31,10 +32,22 @@ const DashboardLayout = () => {
           <h2 className="app-logo">User Management</h2>
         </div>
 
-        <div className="nav-right">
-          <div className="profile-icon" onClick={() => navigate("/profile")}>
+        <div className="nav-right" ref={dropdownRef}>
+          <div className="profile-icon" onClick={() => setOpen(!open)}>
             👤
           </div>
+
+          {open && (
+            <div className="profile-dropdown">
+              <div onClick={() => navigate("/profile")}>My Profile</div>
+              <div onClick={() => navigate("/settings")}>
+                Account Settings
+              </div>
+              <div className="logout" onClick={logout}>
+                Logout
+              </div>
+            </div>
+          )}
         </div>
       </header>
 
@@ -48,9 +61,8 @@ const DashboardLayout = () => {
           <NavLink to="/categories">Categories</NavLink>
           <NavLink to="/reports">Reports</NavLink>
           <NavLink to="/notifications">Notifications</NavLink>
-          <NavLink to="/profile">Profile</NavLink>
-           <NavLink to="/settings">Settings</NavLink>
-
+          
+          <NavLink to="/settings">Settings</NavLink>
         </aside>
 
         {/* Page Content */}
