@@ -117,3 +117,49 @@
   background: #ccc;
   cursor: not-allowed;
 }
+.top-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+/* Search input */
+.top-bar input {
+  width: 840px;
+  padding: 8px 12px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  outline: none;
+}
+
+/* Right side buttons */
+.action-buttons {
+  display: flex;
+  gap: 10px;
+}
+
+/* Buttons */
+.bulk-btn,
+.add-btn {
+  padding: 8px 14px;
+  border: none;
+  border-radius: 6px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.bulk-btn {
+  background-color: #4da3ff;
+  color: #fff;
+}
+
+.add-btn {
+  background-color: #1e88e5;
+  color: #fff;
+}
+
+.bulk-btn:hover,
+.add-btn:hover {
+  opacity: 0.9;
+}
