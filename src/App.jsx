@@ -15,7 +15,6 @@ import Register from "./pages/Register";
 import Navbar from "./components/Navbar";
 import Settings from "./components/Settings";
 
-
 function App() {
   return (
     <Routes>
@@ -29,10 +28,10 @@ function App() {
       <Route path="/" element={<DashboardLayout />}>
         <Route index element={<Navigate to="overview" />} />
         <Route path="overview" element={<Overview />} />
-         <Route path="products" element={<Products />} />
-         <Route path="categories" element={<Categories />} />
-        <Route path="users" element={<Users />} />
+        <Route path="products" element={<Products />} />
+        {/* <Route path="categories" element={<Categories />} /> */}
         <Route path="reports" element={<Reports />} />
+        <Route path="users" element={<Users />} />
         <Route path="notifications" element={<Notifications />} />
         <Route path="profile" element={<Profile />} />
         <Route path="settings" element={<Settings />} />
