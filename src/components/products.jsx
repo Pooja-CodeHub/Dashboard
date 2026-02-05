@@ -1,214 +1,153 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "../styles/products.css";
+import AddProductModal from "../components/AddProductModal";
+import BulkUploadModal from "../components/BulkUploadModal";
 
 const Products = () => {
-  const [products, setProducts] = useState([
-    {
-      id: 1,
-      name: "Wheat Seeds",
-      category: "Seeds",
-      price: 1200,
-      quantity: 50,
-      status: "Active",
-    },
-    {
-      id: 2,
-      name: "Rice Fertilizer",
-      category: "Fertilizer",
-      price: 800,
-      quantity: 20,
-      status: "Inactive",
-    },
-    {
-      id: 3,
-      name: "Organic Pesticide",
-      category: "Pesticide",
-      price: 600,
-      quantity: 35,
-      status: "Active",
-    },
-  ]);
-
-  const [form, setForm] = useState({
-    name: "",
-    category: "",
-    price: "",
-    quantity: "",
-  });
-
+  const [products, setProducts] = useState([]);
   const [search, setSearch] = useState("");
-  const [currentPage, setCurrentPage] = useState(1);
+  const [showModal, setShowModal] = useState(false);
+  const [showBulkModal, setShowBulkModal] = useState(false);
 
-  const itemsPerPage = 5;
+  useEffect(() => {
+    // Mock backend data (replace with API later)
+    setProducts([
+      {
+        id: "ST-NT-01",
+        name: "Classmate Notebook",
+        description: "Ruled notebook suitable for school and office use",
+        price: 60,
+        category: "Paper Products",
+      },
+      {
+        id: "ST-PN-02",
+        name: "Cello Gel Pen",
+        description: "Smooth gel pen for everyday writing",
+        price: 10,
+        category: "Writing Instruments",
+      },
+      {
+        id: "ST-PC-03",
+        name: "Apsara Pencil",
+        description: "High-quality pencil for students",
+        price: 5,
+        category: "Writing Instruments",
+      },
+    ]);
+  }, []);
 
-  // Handle form change
-  const handleChange = (e) => {
-    setForm({ ...form, [e.target.name]: e.target.value });
-  };
-
-  // Add product
-  const addProduct = () => {
-    if (!form.name || !form.category || !form.price || !form.quantity) {
-      alert("All fields are required");
-      return;
-    }
-
+  // ✅ Add product from modal (UI only)
+  const handleAddProduct = (product) => {
     const newProduct = {
-      id: products.length + 1,
-      ...form,
-      status: "Active",
+      id: `ST-${products.length + 1}`,
+      name: product.productName,
+      description: product.description,
+      price: product.price,
+      category: product.category,
     };
 
-    setProducts([...products, newProduct]);
-    setForm({ name: "", category: "", price: "", quantity: "" });
+    setProducts((prev) => [...prev, newProduct]);
   };
 
-  // Delete product
-  const deleteProduct = (id) => {
+  // ✅ Bulk upload handler (UI only)
+  const handleBulkUpload = (data) => {
+    console.log("Bulk upload data:", data);
+    // later → POST /api/products/bulk
+  };
+
+  // ✅ Delete product
+  const handleDelete = (id) => {
     setProducts(products.filter((p) => p.id !== id));
   };
 
-  // Toggle status
-  const toggleStatus = (id) => {
-    setProducts(
-      products.map((p) =>
-        p.id === id
-          ? { ...p, status: p.status === "Active" ? "Inactive" : "Active" }
-          : p
-      )
-    );
-  };
-
-  // Search filter
-  const filteredProducts = products.filter((p) =>
-    p.name.toLowerCase().includes(search.toLowerCase())
-  );
-
-  // Pagination logic
-  const totalPages = Math.ceil(filteredProducts.length / itemsPerPage);
-  const startIndex = (currentPage - 1) * itemsPerPage;
-  const paginatedProducts = filteredProducts.slice(
-    startIndex,
-    startIndex + itemsPerPage
+  const filteredProducts = products.filter(
+    (p) =>
+      p.id.toLowerCase().includes(search.toLowerCase()) ||
+      p.name.toLowerCase().includes(search.toLowerCase()) ||
+      p.price.toString().includes(search)
   );
 
   return (
     <div className="products-container">
-      <h2>Products Inventory Management</h2>
+      <h2>Stationery Products</h2>
 
-      {/* Top Bar */}
+      {/* Search & Actions */}
       <div className="top-bar">
         <input
           type="text"
-          placeholder="Search product..."
+          placeholder="Search products by ID, name, or price"
           value={search}
           onChange={(e) => setSearch(e.target.value)}
         />
-      </div>
 
-      {/* Add Product Form */}
-      <div className="product-form">
-        <input
-          type="text"
-          name="name"
-          placeholder="Product Name"
-          value={form.name}
-          onChange={handleChange}
-        />
-
-        <input
-          type="text"
-          name="category"
-          placeholder="Category"
-          value={form.category}
-          onChange={handleChange}
-        />
-
-        <input
-          type="number"
-          name="price"
-          placeholder="Price"
-          value={form.price}
-          onChange={handleChange}
-        />
-
-        <input
-          type="number"
-          name="quantity"
-          placeholder="Quantity"
-          value={form.quantity}
-          onChange={handleChange}
-        />
-
-        <button onClick={addProduct}>Add Product</button>
+        <div className="action-buttons">
+          <button className="bulk-btn" onClick={() => setShowBulkModal(true)}>
+            Add Product in Bulk
+          </button>
+          <button className="add-btn" onClick={() => setShowModal(true)}>
+            Add Single Product
+          </button>
+        </div>
       </div>
 
       {/* Products Table */}
       <table className="product-table">
         <thead>
           <tr>
-            <th>ID</th>
+            <th>Sr No</th>
+            <th>Product Code</th>
             <th>Name</th>
-            <th>Category</th>
+            <th>Description</th>
             <th>Price ₹</th>
-            <th>Qty</th>
-            <th>Status</th>
+            <th>Category</th>
             <th>Actions</th>
           </tr>
         </thead>
 
         <tbody>
-          {paginatedProducts.map((p) => (
-            <tr key={p.id}>
-              <td>{p.id}</td>
-              <td>{p.name}</td>
-              <td>{p.category}</td>
-              <td>{p.price}</td>
-              <td>{p.quantity}</td>
-              <td>
-                <span className={p.status === "Active" ? "active" : "inactive"}>
-                  {p.status}
-                </span>
-              </td>
-              <td>
-                <button
-                  className="status-btn"
-                  onClick={() => toggleStatus(p.id)}
-                >
-                  Toggle
-                </button>
-                <button
-                  className="delete-btn"
-                  onClick={() => deleteProduct(p.id)}
-                >
-                  Delete
-                </button>
+          {filteredProducts.length > 0 ? (
+            filteredProducts.map((p, index) => (
+              <tr key={p.id}>
+                <td>{index + 1}</td>
+                <td>{p.id}</td>
+                <td>{p.name}</td>
+                <td>{p.description}</td>
+                <td>₹{p.price}</td>
+                <td>{p.category}</td>
+                <td>
+                  <button className="edit-btn">✏️</button>
+                  <button
+                    className="delete-btn"
+                    onClick={() => handleDelete(p.id)}
+                  >
+                    🗑️
+                  </button>
+                </td>
+              </tr>
+            ))
+          ) : (
+            <tr>
+              <td colSpan="7" style={{ textAlign: "center" }}>
+                No products found
               </td>
             </tr>
-          ))}
+          )}
         </tbody>
       </table>
 
-      {/* Pagination */}
-      <div className="pagination">
-        <button
-          disabled={currentPage === 1}
-          onClick={() => setCurrentPage(currentPage - 1)}
-        >
-          Prev
-        </button>
+      {/* Add Single Product Modal */}
+      <AddProductModal
+        isOpen={showModal}
+        onClose={() => setShowModal(false)}
+        onSave={handleAddProduct}
+      />
 
-        <span>
-          Page {currentPage} of {totalPages}
-        </span>
-
-        <button
-          disabled={currentPage === totalPages}
-          onClick={() => setCurrentPage(currentPage + 1)}
-        >
-          Next
-        </button>
-      </div>
+      {/* Bulk Upload Modal */}
+      <BulkUploadModal
+        isOpen={showBulkModal}
+        onClose={() => setShowBulkModal(false)}
+        onUpload={handleBulkUpload}
+      />
     </div>
   );
 };

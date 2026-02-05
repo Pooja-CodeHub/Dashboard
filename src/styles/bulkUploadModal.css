@@ -1,0 +1,68 @@
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.4);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.bulk-modal {
+  background: #fff;
+  width: 420px;
+  padding: 20px;
+  border-radius: 8px;
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.subtitle {
+  font-size: 14px;
+  color: #666;
+  margin: 10px 0;
+}
+
+.upload-box {
+  border: 2px dashed #ccc;
+  padding: 15px;
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+.upload-box input {
+  display: none;
+}
+
+.choose-btn,
+.image-btn {
+  background: #4caf50;
+  color: white;
+  padding: 6px 12px;
+  border: none;
+  margin-bottom: 5px;
+}
+
+.modal-footer {
+  display: flex;
+  justify-content: space-between;
+}
+
+.remove-btn {
+  background: #eee;
+  padding: 6px 12px;
+}
+
+.upload-btn {
+  background: #81c784;
+  color: #fff;
+  padding: 6px 16px;
+}
+
+.template-link {
+  text-align: center;
+  margin-top: 10px;
+}

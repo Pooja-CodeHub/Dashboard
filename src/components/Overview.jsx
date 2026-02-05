@@ -3,16 +3,16 @@ import "../styles/overview.css";
 const Overview = () => {
   const stats = [
     { title: "Total Products", value: 1240 },
+    { title: "Low Stock Items", value: 46 },
     { title: "Out of Stock", value: 32 },
-    { title: "Products Added Today", value: 18 },
     { title: "Active Categories", value: 12 },
   ];
 
   const activities = [
-    "New product 'Wheat Seeds' added",
-    "Product 'Organic Fertilizer' updated",
-    "Category 'Pesticides' created",
-    "New user 'Admin' logged in",
+    "New product 'Classmate Notebook' added",
+    "Stock updated for 'Cello Gel Pen'",
+    "Sub-category 'Gel Pens' created",
+    "Product 'Camlin Geometry Box' marked low stock",
   ];
 
   return (
@@ -34,13 +34,14 @@ const Overview = () => {
         <div className="chart-card">
           <h4>Stock Status</h4>
           <div className="fake-chart">
-            <div className="bar in-stock">In Stock 85%</div>
-            <div className="bar out-stock">Out 15%</div>
+            <div className="bar in-stock">In Stock 75%</div>
+            <div className="bar low-stock">Low Stock 15%</div>
+            <div className="bar out-stock">Out 10%</div>
           </div>
         </div>
 
         <div className="chart-card">
-          <h4>Product Growth</h4>
+          <h4>Monthly Product Additions</h4>
           <div className="fake-chart">
             <div className="line-chart">
               Jan ▄ Feb ▆ Mar ▇ Apr ▆ May ▇ Jun ▇
