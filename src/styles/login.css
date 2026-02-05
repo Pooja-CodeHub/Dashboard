@@ -1,0 +1,139 @@
+.login-wrapper {
+  min-height: 100vh;
+  background: #f8fafc; /* same as register */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.login-card {
+  width: 720px;
+  background: #ffffff;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  border-radius: 10px;
+  box-shadow: 0 15px 30px rgba(15, 23, 42, 0.12);
+  overflow: hidden;
+}
+
+/* LEFT */
+.login-left {
+  background: #f1f5f9; /* soft dashboard gray */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.login-left h1 {
+  color: #1e293b; /* dashboard dark */
+  font-weight: 600;
+  font-size: 34px;
+}
+
+.logo {
+  text-align: center;
+  color: #1e293b; /* dark navy */
+  margin-bottom: 22px;
+  font-size: 28px;
+  font-weight: 600;
+}
+
+.logo span {
+  color: #3b82f6; /* dashboard blue */
+}
+
+/* RIGHT */
+.login-right {
+  padding: 40px;
+}
+
+.login-right h2 {
+  margin-bottom: 25px;
+  color: #1e293b;
+}
+
+/* FIELDS */
+.field {
+  margin-bottom: 20px;
+}
+
+.field label {
+  font-size: 14px;
+  font-weight: 600;
+  display: block;
+  margin-bottom: 6px;
+  color: #334155;
+}
+
+.field input {
+  width: 100%;
+  padding: 10px 4px;
+  border: 1px solid #cbd5e1;
+  border-radius: 6px;
+  font-size: 14px;
+  color: #0f172a;
+}
+
+.field input:focus {
+  outline: none;
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 1px rgba(59, 130, 246, 0.3);
+}
+
+/* PASSWORD */
+.password-field {
+  position: relative;
+}
+
+.password-field .eye {
+  position: absolute;
+  right: 12px;
+  top: 36px;
+  cursor: pointer;
+  color: #64748b;
+}
+
+/* BUTTON */
+.btn-login {
+  width: 100%;
+  background: #3b82f6; /* SAME as register button */
+  border: none;
+  padding: 12px;
+  color: #ffffff;
+  border-radius: 6px;
+  font-size: 15px;
+  margin-top: 10px;
+}
+
+.btn-login:hover {
+  background: #2563eb;
+}
+
+.btn-login:disabled {
+  background: #93c5fd;
+  cursor: not-allowed;
+}
+
+/* LINKS */
+.login-links {
+  text-align: center;
+  margin-top: 15px;
+  font-size: 17px;
+}
+
+.login-links span {
+  cursor: pointer;
+  color: #3b82f6;
+}
+
+.divider {
+  margin: 0 8px;
+  color: #94a3b8;
+}
+
+/* ERROR */
+.error {
+  color: #dc2626;
+  font-size: 12px;
+  margin-top: 4px;
+}

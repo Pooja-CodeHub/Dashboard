@@ -1,61 +1,122 @@
-/* Center screen */
-.auth-container {
-  height: 100vh;
+/* Page background – same as dashboard content area */
+.register-wrapper {
+  min-height: 100vh;
+  background: #f8fafc;
   display: flex;
   justify-content: center;
   align-items: center;
-  background: linear-gradient(120deg, #ebf3fa, #bbd2d3);
-  font-family: Arial, sans-serif;
 }
 
-/* Card box */
-.auth-box {
-  background: white;
-  padding: 30px;
-  width: 350px;
+/* Card – same style as product table card */
+.register-card {
+  max-width: 560px;
+  width: 100%;
+  background: #ffffff;
+  padding: 28px;
   border-radius: 10px;
-  box-shadow: 0 10px 25px rgba(151, 149, 149, 0.2);
+  box-shadow: 0 10px 25px rgba(15, 23, 42, 0.08);
+}
+
+/* Logo / Title */
+.logo {
   text-align: center;
+  color: #1e293b; /* dark navy */
+  margin-bottom: 22px;
+  font-size: 28px;
+  font-weight: 600;
 }
 
-/* Heading */
-.auth-box h2 {
-  margin-bottom: 20px;
+.logo span {
+  color: #3b82f6; /* dashboard blue */
 }
 
-/* Inputs */
-.auth-box input {
+/* Rows */
+.row {
+  display: flex;
+  gap: 16px;
+  margin-top:16px ;
+}
+
+.field {
+  flex: 1;
+  margin-bottom: -2px;
+}
+
+/* Field container */
+.field label {
+  display: block;
+  font-size: 14px;        /* was too small */
+  font-weight: 600;
+  color: #1e293b;
+  margin-bottom: 6px;
+}
+
+/* Input */
+.field input {
   width: 100%;
-  padding: 10px;
-  margin: 10px 0;
-  border: 1px solid #ccc;
-  border-radius: 5px;
+  padding: 10px 4px;
+  border: 1px solid #cbd5e1;
+  border-radius: 6px;
+  font-size: 12px;        /* input text size */
+  color: #0f172a;
 }
 
-/* Button */
-.auth-box button {
-  width: 100%;
-  padding: 10px;
-  background: #84bae8;
-  color: white;
+/* Placeholder */
+.field input::placeholder {
+  font-size: 13px;        /* smaller than label */
+  color: #94a3b8;         /* subtle gray */
+}
+
+/* Focus state */
+.field input:focus {
+  outline: none;
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 1px rgba(59, 130, 246, 0.3);
+}
+
+
+/* Buttons */
+.btn-row {
+  display: flex;
+  gap: 16px;
+  margin-top: 18px;
+}
+
+.btn-register {
+  flex: 1;
+  background: #3b82f6; /* primary dashboard blue */
+  color: #ffffff;
   border: none;
-  border-radius: 5px;
+  padding: 10px;
+  border-radius: 6px;
+  font-weight: 500;
   cursor: pointer;
 }
 
-.auth-box button:hover {
-  background: #5cb2c9;
+.btn-register:hover {
+  background: #2563eb;
 }
 
-/* Link */
-.auth-link {
-  margin-top: 15px;
+.btn-back {
+  flex: 1;
+  background: #1e293b; /* sidebar dark */
+  color: #ffffff;
+  border: none;
+  padding: 10px;
+  border-radius: 6px;
+  font-weight: 500;
+  cursor: pointer;
 }
 
+.btn-back:hover {
+  background: #0f172a;
+}
 .error {
-  color: red;
-  margin-bottom: 10px;
-  font-size: 14px;
-  text-align: center;
+  color: #dc2626;
+  font-size: 12px;
+  margin-top: 6px;     /* gap from input */
+  line-height: 1.2;
 }
-
+.field {
+  min-height: 28px; /* keeps layout stable */
+}
