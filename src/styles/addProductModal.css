@@ -69,8 +69,27 @@
   border: none;
 }
 
-.cancel-btn {
+/* .cancel-btn {
   background: #ddd;
   padding: 8px 14px;
   border: none;
+} */
+.close-btn {
+  background: #4facfe;   /* blue box */
+  color: white;
+  width: 30px;           /* square */
+  height: 30px;
+  border: none;
+  border-radius: 4px;    /* slight rounded square */
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;
+
+  display: flex;         /* center × */
+  align-items: center;
+  justify-content: center;
+}
+
+.close-btn:hover {
+  background: #2f8dfc;
 }
