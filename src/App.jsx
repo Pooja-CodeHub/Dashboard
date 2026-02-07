@@ -26,7 +26,7 @@ function App() {
 
       {/* Dashboard routes */}
       <Route path="/" element={<DashboardLayout />}>
-        <Route index element={<Navigate to="overview" />} />
+        <Route index element={<Navigate to="/login" replace />} />
         <Route path="overview" element={<Overview />} />
         <Route path="products" element={<Products />} />
         {/* <Route path="categories" element={<Categories />} /> */}

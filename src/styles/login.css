@@ -61,7 +61,8 @@
   font-size: 14px;
   font-weight: 600;
   display: block;
-  margin-bottom: 6px;
+  margin-bottom: 5px;
+  padding-top: 18px;
   color: #334155;
 }
 
@@ -88,7 +89,7 @@
 .password-field .eye {
   position: absolute;
   right: 12px;
-  top: 36px;
+  top: 46px;
   cursor: pointer;
   color: #64748b;
 }

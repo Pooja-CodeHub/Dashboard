@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-
+import { registerUser } from "../api/authService"; // ✅ FIXED
 import "../styles/auth.css";
 
 const Register = () => {
@@ -58,12 +58,24 @@ const Register = () => {
     return Object.keys(newErrors).length === 0;
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (!validate()) return;
 
-    console.log("Register data:", form);
-    alert("Form is valid ✅");
+    try {
+      await registerUser({
+        email: form.email,
+        password: form.password,
+      });
+
+      alert("Registration successful 🎉");
+      navigate("/login");
+    } catch (error) {
+      console.error(error);
+      setErrors({
+        general: "User already exists or server error",
+      });
+    }
   };
 
   return (
@@ -73,12 +85,19 @@ const Register = () => {
           Stationery <span>Inventory</span>
         </h2>
 
+        {errors.general && (
+          <p className="error" style={{ textAlign: "center" }}>
+            {errors.general}
+          </p>
+        )}
+
         <form onSubmit={handleSubmit}>
           <div className="row">
             <div className="field">
               <label>First Name</label>
               <input
                 name="firstName"
+                value={form.firstName}
                 placeholder="Enter your first name"
                 onChange={handleChange}
               />
@@ -89,6 +108,7 @@ const Register = () => {
               <label>Last Name</label>
               <input
                 name="lastName"
+                value={form.lastName}
                 placeholder="Enter your last name"
                 onChange={handleChange}
               />
@@ -101,6 +121,7 @@ const Register = () => {
               <label>Email</label>
               <input
                 name="email"
+                value={form.email}
                 placeholder="Enter your email"
                 onChange={handleChange}
               />
@@ -111,6 +132,7 @@ const Register = () => {
               <label>Mobile</label>
               <input
                 name="mobile"
+                value={form.mobile}
                 placeholder="Enter your mobile"
                 onChange={handleChange}
               />
@@ -122,6 +144,7 @@ const Register = () => {
             <label>Address</label>
             <input
               name="address"
+              value={form.address}
               placeholder="Enter your address"
               onChange={handleChange}
             />
@@ -134,6 +157,7 @@ const Register = () => {
               <input
                 type="password"
                 name="password"
+                value={form.password}
                 placeholder="Enter your password"
                 onChange={handleChange}
               />
@@ -145,6 +169,7 @@ const Register = () => {
               <input
                 type="password"
                 name="confirmPassword"
+                value={form.confirmPassword}
                 placeholder="Confirm your password"
                 onChange={handleChange}
               />
@@ -155,7 +180,10 @@ const Register = () => {
           </div>
 
           <div className="btn-row">
-            <button className="btn-register">Register</button>
+            <button type="submit" className="btn-register">
+              Register
+            </button>
+
             <button
               type="button"
               className="btn-back"

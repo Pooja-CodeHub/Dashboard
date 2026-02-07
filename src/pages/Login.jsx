@@ -1,10 +1,11 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-
+import { loginUser } from "../api/authService";
 import "../styles/login.css";
 
 const Login = () => {
-  const navigate = useNavigate(); 
+  const navigate = useNavigate();
+
   const [form, setForm] = useState({
     email: "",
     password: "",
@@ -15,6 +16,7 @@ const Login = () => {
 
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
+    setErrors({ ...errors, [e.target.name]: "" });
   };
 
   const validate = () => {
@@ -34,36 +36,46 @@ const Login = () => {
     return Object.keys(newErrors).length === 0;
   };
 
-  const isFormValid = () => {
-    return /^\S+@\S+\.\S+$/.test(form.email) && form.password.trim().length > 0;
-  };
+  const isFormValid = () =>
+    /^\S+@\S+\.\S+$/.test(form.email) &&
+    form.password.trim().length > 0;
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (!validate()) return;
 
-    console.log("Login data:", form);
+    try {
+      await loginUser(form); // 🔐 cookie set by backend
+      navigate("/overview");
+    } catch (error) {
+      setErrors({ general: "Invalid email or password" });
+    }
   };
 
   return (
     <div className="login-wrapper">
       <div className="login-card">
-        {/* LEFT BRAND */}
         <div className="login-left">
           <h1 className="logo">
             Stationery <span>Inventory</span>
           </h1>
         </div>
 
-        {/* RIGHT FORM */}
         <div className="login-right">
           <h2>Admin Login</h2>
+
+          {errors.general && (
+            <p className="error" style={{ textAlign: "center" }}>
+              {errors.general}
+            </p>
+          )}
 
           <form onSubmit={handleSubmit}>
             <div className="field">
               <label>Email</label>
               <input
                 name="email"
+                value={form.email}
                 placeholder="Enter your email"
                 onChange={handleChange}
               />
@@ -75,6 +87,7 @@ const Login = () => {
               <input
                 type={showPassword ? "text" : "password"}
                 name="password"
+                value={form.password}
                 placeholder="Enter your password"
                 onChange={handleChange}
               />
